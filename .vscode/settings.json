@@ -5,6 +5,11 @@
   },
   "[typescriptreact]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-}
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "prettier.jsxSingleQuote": false,
+  "prettier.configPath": ".prettierrc",
+  "editor.quickSuggestions": {
+    "strings": true
+  }
 }
