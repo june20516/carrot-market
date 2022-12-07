@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@tailwindcss/forms", "virtual:275757ecfc955ca714ad06f2aa80ab5a0ae006baae482e0ad19ca96e1ad213d731240dc1a367ad90110760e07a7cd6bddfe47d379ee8b8a7e5745582a7077c9a#npm:0.5.3"],\
             ["@types/json5", "npm:2.2.0"],\
             ["@types/node", "npm:18.11.11"],\
             ["@types/react", "npm:18.0.26"],\
@@ -239,6 +240,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@swc/helpers", "npm:0.4.14"],\
             ["tslib", "npm:2.4.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@tailwindcss/forms", [\
+        ["npm:0.5.3", {\
+          "packageLocation": "./.yarn/cache/@tailwindcss-forms-npm-0.5.3-4d75c0dfda-9eddb4dbd0.zip/node_modules/@tailwindcss/forms/",\
+          "packageDependencies": [\
+            ["@tailwindcss/forms", "npm:0.5.3"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:275757ecfc955ca714ad06f2aa80ab5a0ae006baae482e0ad19ca96e1ad213d731240dc1a367ad90110760e07a7cd6bddfe47d379ee8b8a7e5745582a7077c9a#npm:0.5.3", {\
+          "packageLocation": "./.yarn/__virtual__/@tailwindcss-forms-virtual-65a80c164d/0/cache/@tailwindcss-forms-npm-0.5.3-4d75c0dfda-9eddb4dbd0.zip/node_modules/@tailwindcss/forms/",\
+          "packageDependencies": [\
+            ["@tailwindcss/forms", "virtual:275757ecfc955ca714ad06f2aa80ab5a0ae006baae482e0ad19ca96e1ad213d731240dc1a367ad90110760e07a7cd6bddfe47d379ee8b8a7e5745582a7077c9a#npm:0.5.3"],\
+            ["@types/tailwindcss", null],\
+            ["mini-svg-data-uri", "npm:1.4.4"],\
+            ["tailwindcss", "virtual:275757ecfc955ca714ad06f2aa80ab5a0ae006baae482e0ad19ca96e1ad213d731240dc1a367ad90110760e07a7cd6bddfe47d379ee8b8a7e5745582a7077c9a#npm:3.2.4"]\
+          ],\
+          "packagePeers": [\
+            "@types/tailwindcss",\
+            "tailwindcss"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -570,6 +594,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["carrot-market", "workspace:."],\
+            ["@tailwindcss/forms", "virtual:275757ecfc955ca714ad06f2aa80ab5a0ae006baae482e0ad19ca96e1ad213d731240dc1a367ad90110760e07a7cd6bddfe47d379ee8b8a7e5745582a7077c9a#npm:0.5.3"],\
             ["@types/json5", "npm:2.2.0"],\
             ["@types/node", "npm:18.11.11"],\
             ["@types/react", "npm:18.0.26"],\
@@ -1269,6 +1294,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["micromatch", "npm:4.0.5"],\
             ["braces", "npm:3.0.2"],\
             ["picomatch", "npm:2.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["mini-svg-data-uri", [\
+        ["npm:1.4.4", {\
+          "packageLocation": "./.yarn/cache/mini-svg-data-uri-npm-1.4.4-929f6f1119-997f1fbd8d.zip/node_modules/mini-svg-data-uri/",\
+          "packageDependencies": [\
+            ["mini-svg-data-uri", "npm:1.4.4"]\
           ],\
           "linkType": "HARD"\
         }]\
