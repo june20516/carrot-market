@@ -16,7 +16,7 @@ const Community: NextPage = () => {
               <span>니꼬</span>
               <span>18시간 전</span>
             </div>
-            <div className="py-4 flex justify-start text-sm text-gray-600 border-b border-gray-200 w-full space-x-3">
+            <div className="py-3 flex justify-start text-sm text-gray-600 border-b border-gray-200 w-full space-x-3">
               <span className="flex items-center space-x-1 cursor-pointer">
                 <svg
                   className="w-4 h-4"
