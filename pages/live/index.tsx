@@ -1,17 +1,13 @@
 import { NextPage } from 'next';
 import Layout from '../../components/Layout';
+import ListItem from './components/listItem';
 
 const Live: NextPage = () => {
   return (
     <Layout title="Live" canGoBack={true} hasTabBar={true}>
       <div className="py-2 px-4 space-y-5 divide-y">
-        {Array.from(Array(10)).map(i => {
-          return (
-            <div key={i} className="pt-4">
-              <div className="w-full bg-slate-400 aspect-video rounded-md" />
-              <h3 className="mt-3 text-lg font-medium text-gray-700">Let's Show</h3>
-            </div>
-          );
+        {Array.from(Array(10).keys()).map(i => {
+          return <ListItem key={i} id={i.toString()} title="Let's Show" preview="Now Streaming.." />;
         })}
         <button className="w-12 aspect-square flex justify-center items-center fixed bottom-16 right-5 z-10 bg-purple-500 hover:bg-purple-600 text-white rounded-full shadow-xl border-none">
           <svg
