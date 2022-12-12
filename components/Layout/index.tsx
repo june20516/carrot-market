@@ -13,7 +13,7 @@ interface LayoutProps {
 const Layout = ({ title, children, hasTabBar, canGoBack }: LayoutProps) => {
   return (
     <div>
-      <div className="fixed h-14 w-full max-w-lg border-b flex justify-center items-center bg-white text-lg text-gray-700">
+      <div className="fixed h-14 w-full max-w-lg border-b flex justify-center items-center bg-white text-lg text-gray-700 z-10">
         {canGoBack ? <BackButton /> : null}
         {title ? title : null}
       </div>

@@ -4,7 +4,7 @@ import Layout from '../components/Layout/index';
 const Home: NextPage = () => {
   return (
     <Layout title="Home" canGoBack={true} hasTabBar={true}>
-      <div className="divide-y-[1px]">
+      <div className="divide-y">
         {Array.from(Array(10).keys()).map(i => {
           return (
             <div className="grid gap-1 grid-cols-10 p-5 cursor-pointer">

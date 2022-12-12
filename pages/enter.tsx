@@ -10,7 +10,7 @@ const Enter: NextPage = () => {
 
   return (
     <div className="mt-16 flex flex-col items-center">
-      <h3 className="text-5xl font-semibold">Enter to Carrot</h3>
+      <h3 className="text-5xl font-semibold text-purple-500">Enter to Carrot</h3>
       <div className="w-full mt-10">
         <h5 className="text-gray-400 font-medium mb-3 text-center text-sm">Enter using : </h5>
         <div className="grid grid-cols-2 gap-16 border-b w-full">
