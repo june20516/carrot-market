@@ -2,12 +2,12 @@ import { NextPage } from 'next';
 
 const LiveDetail: NextPage = () => {
   return (
-    <div className="py-14 px-4">
-      <div className="fixed top-14 h-[39vh] w-full inset-0 px-4 bg-white">
+    <div className="py-14 px-4 relative">
+      <div className="fixed top-14 h-[32vh] w-full max-w-lg mx-auto inset-0 px-4 bg-white">
         <div className="w-full bg-slate-400 aspect-video rounded-md" />
         <h3 className="my-3 text-2xl font-medium text-gray-700">Let's Show</h3>
       </div>
-      <div className="py-2.5 mt-[39.5vh]">
+      <div className="py-2.5 mt-[32.5vh]">
         <h1 className="py-2 text-4xl font-bold">Galaxy S50</h1>
         <p className="py-0.5 text-3xl">$140</p>
         <p className="text-base py-1.5">
@@ -40,7 +40,7 @@ const LiveDetail: NextPage = () => {
           </svg>
         </button>
       </div>
-      <div className="h-[40.5vh]">
+      <div className="h-[33.5vh]">
         <div className="space-y-3 py-2 bg-purple-100 h-full overflow-y-scroll">
           {Array.from(Array(10).keys()).map(i => {
             return (

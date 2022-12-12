@@ -27,7 +27,7 @@ const ChatDetail: NextPage = () => {
           </>
         );
       })}
-      <div className="fixed bottom-0 w-full mx-auto mx-w-md inset-x-0 px-5">
+      <div className="fixed bottom-0 w-full mx-auto max-w-lg inset-x-0 px-5">
         <div className="flex items-center bg-white">
           <input
             type="text"
