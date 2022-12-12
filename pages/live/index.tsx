@@ -7,7 +7,7 @@ const Live: NextPage = () => {
         return (
           <div className="pt-4">
             <div className="w-full bg-slate-400 aspect-video rounded-md" />
-            <h3 className="mt-3 font-medium text-gray-700">Let's Show</h3>
+            <h3 className="mt-3 text-lg font-medium text-gray-700">Let's Show</h3>
           </div>
         );
       })}
