@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 const Community: NextPage = () => {
   return (
     <Layout title="Community" canGoBack={true} hasTabBar={true}>
-      <div className="pt-6 px-5 space-y-6">
+      <div className="pt-6 px-5 space-y-6 relative">
         {Array.from(Array(10).keys()).map(i => {
           return (
             <div key={i} className="flex flex-col items-start shadow-xs">
@@ -57,7 +57,7 @@ const Community: NextPage = () => {
             </div>
           );
         })}
-        <button className="w-12 aspect-square flex justify-center items-center fixed bottom-5 right-5 z-10 bg-purple-500 hover:bg-purple-600 text-white rounded-full shadow-xl">
+        <button className="w-12 aspect-square flex justify-center items-center fixed bottom-16 right-5 z-10 bg-purple-500 hover:bg-purple-600 text-white rounded-full shadow-xl">
           <svg
             className="w-6 h-6"
             fill="none"

@@ -13,7 +13,7 @@ const Live: NextPage = () => {
             </div>
           );
         })}
-        <button className="w-12 aspect-square flex justify-center items-center fixed bottom-5 right-5 z-10 bg-purple-500 hover:bg-purple-600 text-white rounded-full shadow-xl border-none">
+        <button className="w-12 aspect-square flex justify-center items-center fixed bottom-16 right-5 z-10 bg-purple-500 hover:bg-purple-600 text-white rounded-full shadow-xl border-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
