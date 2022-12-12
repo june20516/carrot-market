@@ -7,7 +7,7 @@ const Home: NextPage = () => {
       <div className="divide-y">
         {Array.from(Array(10).keys()).map(i => {
           return (
-            <div className="grid gap-1 grid-cols-10 p-5 cursor-pointer">
+            <div key={i} className="grid gap-1 grid-cols-10 p-5 cursor-pointer">
               <div className="col-span-2">
                 <span className="flex justify-center items-center w-full aspect-square bg-slate-400 text-white rounded-md">
                   image

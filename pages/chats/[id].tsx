@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 const ChatDetail: NextPage = () => {
   return (
     <Layout title="Chat Detail" canGoBack={true} hasTabBar={true}>
-      <div className="pt-3 pb-20 px-5 space-y-8 relative">
+      <div className="pt-3 pb-2 px-5 space-y-8 relative">
         {Array.from(Array(10).keys()).map(i => {
           return (
             <>

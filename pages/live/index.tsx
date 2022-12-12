@@ -7,7 +7,7 @@ const Live: NextPage = () => {
       <div className="py-2 px-4 space-y-5 divide-y">
         {Array.from(Array(10)).map(i => {
           return (
-            <div className="pt-4">
+            <div key={i} className="pt-4">
               <div className="w-full bg-slate-400 aspect-video rounded-md" />
               <h3 className="mt-3 text-lg font-medium text-gray-700">Let's Show</h3>
             </div>
@@ -18,7 +18,7 @@ const Live: NextPage = () => {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
             className="w-6 h-6"
           >

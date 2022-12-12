@@ -5,9 +5,9 @@ const Chats: NextPage = () => {
   return (
     <Layout title="Chats" hasTabBar={true} canGoBack={true}>
       <div className="px-5 divide-y">
-        {Array.from(Array(10)).map(() => {
+        {Array.from(Array(10)).map(i => {
           return (
-            <div className="py-3 flex justify-between space-x-5 items-center cursor-pointer">
+            <div key={i} className="py-3 flex justify-between space-x-5 items-center cursor-pointer">
               <div className="bg-slate-300 w-16 aspect-square rounded-full items-center" />
               <div className="flex flex-col justify-center w-full">
                 <p className="font-medium">Steve Jebs</p>

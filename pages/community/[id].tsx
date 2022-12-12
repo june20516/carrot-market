@@ -56,9 +56,9 @@ const CommunityPostDetail: NextPage = () => {
             <span>답변 1</span>
           </span>
         </div>
-        {Array.from(Array(10).keys()).map(() => {
+        {Array.from(Array(10).keys()).map(i => {
           return (
-            <div className="border-t border-gray-200">
+            <div key={i} className="border-t border-gray-200">
               <div className="flex items-start space-x-2 p-2 pl-0">
                 <div className="bg-slate-300 w-10 aspect-square rounded-full" />
                 <div className="flex flex-col">

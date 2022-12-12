@@ -1,20 +1,43 @@
 import React from 'react';
 import { NextPage } from 'next';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { klassName } from '../../libs/utils';
 
 const TabBar: NextPage = () => {
+  const router = useRouter();
+  const currentPath = router.asPath;
+  const homePath = '/';
+  const itemPath = '/items';
+  const communityPath = '/community';
+  const livePath = '/live';
+  const chatPath = '/chats';
+  const profilePath = '/profile';
+  const hilightCurrent = function (currentPath: string, navPath: string): string {
+    let isMatched: Boolean;
+    if (navPath === '/') {
+      isMatched = currentPath === navPath;
+    } else {
+      isMatched = currentPath.startsWith(navPath);
+    }
+    return isMatched ? 'bg-purple-600 text-white hover:bg-purple-600' : '';
+  };
+
   return (
-    <nav className="fixed h-14 w-full max-w-lg bottom-0 flex justify-around items-center bg-purple-500 text-white text-xs group">
+    <nav className="fixed h-14 w-full max-w-lg bottom-0 border-t flex justify-around items-center bg-white text-gray-600 text-xs group">
       <Link
-        className="flex flex-col justify-center items-center hover:bg-purple-600 w-full h-full cursor-pointer"
-        href={'community'}
+        className={klassName(
+          'flex flex-col justify-center items-center hover:text-white hover:bg-purple-600 w-full h-full cursor-pointer',
+          hilightCurrent(currentPath, communityPath)
+        )}
+        href={communityPath}
       >
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
             className="w-6 h-6"
           >
@@ -28,19 +51,22 @@ const TabBar: NextPage = () => {
         <div>Community</div>
       </Link>
       <Link
-        className="flex flex-col justify-center items-center hover:bg-purple-600 w-full h-full cursor-pointer"
-        href={'/live'}
+        className={klassName(
+          'flex flex-col justify-center items-center hover:text-white hover:bg-purple-600 w-full h-full cursor-pointer',
+          hilightCurrent(currentPath, livePath)
+        )}
+        href={livePath}
       >
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
             className="w-6 h-6"
           >
-            <path strokeLinecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -51,15 +77,19 @@ const TabBar: NextPage = () => {
         <div>Live</div>
       </Link>
       <Link
-        className="flex flex-col justify-center items-center hover:bg-purple-600 w-full h-full cursor-pointer"
-        href={'/'}
+        className={klassName(
+          'flex flex-col justify-center items-center hover:text-white hover:bg-purple-600 w-full h-full cursor-pointer',
+          hilightCurrent(currentPath, homePath),
+          hilightCurrent(currentPath, itemPath)
+        )}
+        href={homePath}
       >
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
             className="w-6 h-6"
           >
@@ -73,15 +103,18 @@ const TabBar: NextPage = () => {
         <div>Home</div>
       </Link>
       <Link
-        className="flex flex-col justify-center items-center hover:bg-purple-600 w-full h-full cursor-pointer"
-        href={'chats'}
+        className={klassName(
+          'flex flex-col justify-center items-center hover:text-white hover:bg-purple-600 w-full h-full cursor-pointer',
+          hilightCurrent(currentPath, chatPath)
+        )}
+        href={chatPath}
       >
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
             className="w-6 h-6"
           >
@@ -95,15 +128,18 @@ const TabBar: NextPage = () => {
         <div>Chats</div>
       </Link>
       <Link
-        className="flex flex-col justify-center items-center hover:bg-purple-600 w-full h-full cursor-pointer"
-        href={'profile'}
+        className={klassName(
+          'flex flex-col justify-center items-center hover:text-white hover:bg-purple-600 w-full h-full cursor-pointer',
+          hilightCurrent(currentPath, profilePath)
+        )}
+        href={profilePath}
       >
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
             className="w-6 h-6"
           >
