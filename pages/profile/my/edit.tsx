@@ -1,9 +1,5 @@
 import { NextPage } from 'next';
-import { useState } from 'react';
 
-const klassName = (...classNames: string[]) => {
-  return classNames.join(' ');
-};
 const EditProfile: NextPage = () => {
   return (
     <div className="mt-16 flex flex-col items-center">

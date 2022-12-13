@@ -12,7 +12,7 @@ const TabBar: NextPage = () => {
   const communityPath = '/community';
   const livePath = '/live';
   const chatPath = '/chats';
-  const profilePath = '/profile';
+  const profilePath = '/profile/my';
   const hilightCurrent = function (currentPath: string, navPath: string): string {
     let isMatched: Boolean;
     if (navPath === '/') {

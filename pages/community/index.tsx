@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import FloatingButton from '../../components/floatingButton';
 import Layout from '../../components/Layout';
 import ListItem from './components/listItem';
 
@@ -20,7 +21,7 @@ const Community: NextPage = () => {
             />
           );
         })}
-        <button className="w-12 aspect-square flex justify-center items-center fixed bottom-16 right-5 z-10 bg-purple-500 hover:bg-purple-600 text-white rounded-full shadow-xl">
+        <FloatingButton href={'/community/write'}>
           <svg
             className="w-6 h-6"
             fill="none"
@@ -35,7 +36,7 @@ const Community: NextPage = () => {
               d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
             ></path>
           </svg>
-        </button>
+        </FloatingButton>
       </div>
     </Layout>
   );

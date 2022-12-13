@@ -1,8 +1,10 @@
 import { NextPage } from 'next';
+import FloatingButton from '../../../components/floatingButton';
+import Layout from '../../../components/Layout';
 
 const Sold: NextPage = () => {
   return (
-    <div>
+    <Layout title="Items sold" canGoBack={true} hasTabBar={true}>
       {Array.from(Array(10).keys()).map(i => {
         return (
           <div key={i} className="grid gap-1 grid-cols-10 p-5 border-b cursor-pointer">
@@ -55,7 +57,7 @@ const Sold: NextPage = () => {
           </div>
         );
       })}
-      <button className="w-12 aspect-square flex justify-center items-center fixed bottom-16 right-5 z-10 bg-purple-500 hover:bg-purple-600 text-white rounded-full shadow-xl">
+      <FloatingButton href={'/items/upload'}>
         <svg
           className="h-6 w-6"
           xmlns="http://www.w3.org/2000/svg"
@@ -66,8 +68,8 @@ const Sold: NextPage = () => {
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
         </svg>
-      </button>
-    </div>
+      </FloatingButton>
+    </Layout>
   );
 };
 

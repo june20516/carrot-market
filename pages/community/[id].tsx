@@ -1,17 +1,12 @@
 import type { NextPage } from 'next';
 import Layout from '../../components/Layout';
+import ProfileBar from '../../components/profileBar';
 
 const CommunityPostDetail: NextPage = () => {
   return (
     <Layout title="Community Detail" hasTabBar={true} canGoBack={true}>
       <div className="px-5">
-        <div className="py-4 flex space-x-5 border-b mb-3">
-          <div className="bg-slate-300 w-12 aspect-square rounded-full items-center" />
-          <div className="flex flex-col justify-center">
-            <p className="font-medium">Steve Jebs</p>
-            <button className="text-sm text-gray-400 hover:text-gray-600">View profile &rarr;</button>
-          </div>
-        </div>
+        <ProfileBar userId="1" userName="Steve Jebs" />
         <div className="border-b border-gray-200">
           <span className="inline-flex items-center py-0.5 px-2 text-xs font-medium text-gray-500 bg-gray-100 rounded-full">
             동네질문

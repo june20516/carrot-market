@@ -1,10 +1,10 @@
 import { NextPage } from 'next';
-import Layout from '../../components/Layout';
-import ListItem from '../items/components/listItem';
+import Layout from '../../../components/Layout';
+import ListItem from '../../items/components/listItem';
 
 const Bought: NextPage = () => {
   return (
-    <Layout title="Items you bought" canGoBack={true} hasTabBar={true}>
+    <Layout title="Items bought" canGoBack={true} hasTabBar={true}>
       <div className="divide-y">
         {Array.from(Array(10).keys()).map(i => {
           return (
