@@ -38,6 +38,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["next", "virtual:275757ecfc955ca714ad06f2aa80ab5a0ae006baae482e0ad19ca96e1ad213d731240dc1a367ad90110760e07a7cd6bddfe47d379ee8b8a7e5745582a7077c9a#npm:13.0.6"],\
             ["postcss", "npm:8.4.19"],\
             ["prettier", "npm:2.8.0"],\
+            ["prisma", "npm:4.7.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:275757ecfc955ca714ad06f2aa80ab5a0ae006baae482e0ad19ca96e1ad213d731240dc1a367ad90110760e07a7cd6bddfe47d379ee8b8a7e5745582a7077c9a#npm:18.2.0"],\
             ["tailwindcss", "virtual:275757ecfc955ca714ad06f2aa80ab5a0ae006baae482e0ad19ca96e1ad213d731240dc1a367ad90110760e07a7cd6bddfe47d379ee8b8a7e5745582a7077c9a#npm:3.2.4"],\
@@ -230,6 +231,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@npmcli/move-file", "npm:2.0.1"],\
             ["mkdirp", "npm:1.0.4"],\
             ["rimraf", "npm:3.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@prisma/engines", [\
+        ["npm:4.7.1", {\
+          "packageLocation": "./.yarn/unplugged/@prisma-engines-npm-4.7.1-cc5ae0f788/node_modules/@prisma/engines/",\
+          "packageDependencies": [\
+            ["@prisma/engines", "npm:4.7.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -604,6 +614,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["next", "virtual:275757ecfc955ca714ad06f2aa80ab5a0ae006baae482e0ad19ca96e1ad213d731240dc1a367ad90110760e07a7cd6bddfe47d379ee8b8a7e5745582a7077c9a#npm:13.0.6"],\
             ["postcss", "npm:8.4.19"],\
             ["prettier", "npm:2.8.0"],\
+            ["prisma", "npm:4.7.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:275757ecfc955ca714ad06f2aa80ab5a0ae006baae482e0ad19ca96e1ad213d731240dc1a367ad90110760e07a7cd6bddfe47d379ee8b8a7e5745582a7077c9a#npm:18.2.0"],\
             ["tailwindcss", "virtual:275757ecfc955ca714ad06f2aa80ab5a0ae006baae482e0ad19ca96e1ad213d731240dc1a367ad90110760e07a7cd6bddfe47d379ee8b8a7e5745582a7077c9a#npm:3.2.4"],\
@@ -1796,6 +1807,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/prettier-npm-2.8.0-746e3df53e-72004ce0cc.zip/node_modules/prettier/",\
           "packageDependencies": [\
             ["prettier", "npm:2.8.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["prisma", [\
+        ["npm:4.7.1", {\
+          "packageLocation": "./.yarn/unplugged/prisma-npm-4.7.1-37e177dd48/node_modules/prisma/",\
+          "packageDependencies": [\
+            ["prisma", "npm:4.7.1"],\
+            ["@prisma/engines", "npm:4.7.1"]\
           ],\
           "linkType": "HARD"\
         }]\

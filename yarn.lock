@@ -157,6 +157,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/engines@npm:4.7.1":
+  version: 4.7.1
+  resolution: "@prisma/engines@npm:4.7.1"
+  checksum: 1660f1d5a6188a9cb9aa5186111910f37b1bc02f09be10336a41e0ec61a18a4193e0ff424077dafb1bf1392a435fc89cec47526a58784a7bdc6c8278adf147a4
+  languageName: node
+  linkType: hard
+
 "@swc/helpers@npm:0.4.14":
   version: 0.4.14
   resolution: "@swc/helpers@npm:0.4.14"
@@ -467,6 +474,7 @@ __metadata:
     next: 13.0.6
     postcss: ^8.4.19
     prettier: ^2.8.0
+    prisma: ^4.7.1
     react: 18.2.0
     react-dom: 18.2.0
     tailwindcss: ^3.2.4
@@ -1505,6 +1513,18 @@ __metadata:
   bin:
     prettier: bin-prettier.js
   checksum: 72004ce0cc9bb097daf3e3833f62495768724392c1d5b178dd47372337616e9e50ecbb0804f236596223f7b5eb1bbe69cefc8957dca21112c5777e77ef73a564
+  languageName: node
+  linkType: hard
+
+"prisma@npm:^4.7.1":
+  version: 4.7.1
+  resolution: "prisma@npm:4.7.1"
+  dependencies:
+    "@prisma/engines": 4.7.1
+  bin:
+    prisma: build/index.js
+    prisma2: build/index.js
+  checksum: eb7046a5928f33e484bb2a100f49b613a37bdd83d72aa7e87a4edb38a235b7c44bb9c89bc9116af60950554da06d6ef7c581dd0c637ba2798810485d04da29d4
   languageName: node
   linkType: hard
 
