@@ -1,15 +1,18 @@
 import { NextPage } from 'next';
+import Bubble from '../../components/bubble';
+import LargeButton from '../../components/largeButton';
 import Layout from '../../components/Layout';
+import MessageInput from '../../components/messageInput';
 
 const LiveDetail: NextPage = () => {
   return (
     <Layout title="Live Detail" canGoBack={true} hasTabBar={true}>
-      <div className="py-14 px-4 relative">
+      <div className="py-4 px-4 relative">
         <div className="fixed top-16 h-[32vh] w-full max-w-lg mx-auto inset-0 px-4 bg-white">
           <div className="w-full bg-slate-400 aspect-video rounded-md" />
-          <h3 className="my-3 text-2xl font-medium text-gray-700">Let's Show</h3>
+          <h3 className="text-2xl font-medium text-gray-700">Let's Show</h3>
         </div>
-        <div className="py-2.5 mt-[32.5vh]">
+        <div className="py-2.5 mt-[30.5vh]">
           <h1 className="py-2 text-4xl font-bold">Galaxy S50</h1>
           <p className="py-0.5 text-3xl">$140</p>
           <p className="text-base py-1.5">
@@ -21,9 +24,7 @@ const LiveDetail: NextPage = () => {
           </p>
         </div>
         <div className="flex space-x-2 mb-4">
-          <button className="w-full h-12 bg-purple-500 rounded-md text-white text-xl hover:bg-purple-600 active:ring-2 ring-purple-600 ring-offset-2">
-            Talk to seller
-          </button>
+          <LargeButton klass="h-12">Talk To Seller</LargeButton>{' '}
           <button className="w-1/12 rounded-md flex justify-center items-center text-2xl text-gray-500 hover:text-gray-700 hover:bg-gray-100 active:text-red-600">
             <svg
               className="h-6 w-6 "
@@ -42,43 +43,29 @@ const LiveDetail: NextPage = () => {
             </svg>
           </button>
         </div>
-        <div className="h-[33.5vh] pb-2">
+        <div className="h-[35.5vh] pb-12">
           <div className="space-y-3 py-2 bg-purple-100 h-full overflow-y-scroll">
             {Array.from(Array(10).keys()).map(i => {
               return (
                 <>
-                  <div className="text-gray-700 flex items-center space-x-2">
-                    <div className="w-10 aspect-square rounded-full bg-slate-400" />
-                    <div className="bg-gray-200 py-2.5 px-6 rounded-full">Hi how much are you selling them for?</div>
-                  </div>
-                  <div className="flex justify-end space-x-2">
-                    <div className="bg-purple-600 py-2.5 px-6 rounded-full text-white">I want ￦20,000</div>
-                    <div className="w-10 aspect-square rounded-full bg-slate-400" />
-                  </div>
-                  <div className="text-gray-700 flex items-center space-x-2">
-                    <div className="w-10 aspect-square rounded-full bg-slate-400" />
-                    <div className="bg-gray-200 py-2.5 px-6 rounded-full">미쳤어</div>
-                  </div>
-                  <div className="flex justify-end space-x-2">
-                    <div className="bg-purple-600 py-2.5 px-6 rounded-full text-white">
-                      Ok, It's kidding. Let me ask again.
-                    </div>
-                    <div className="w-10 aspect-square rounded-full bg-slate-400" />
-                  </div>
+                  <Bubble userImage="1" userId="1">
+                    Hi how much are you selling them for?
+                  </Bubble>
+                  <Bubble userImage="2" userId="2" isMe={true}>
+                    I want ￦20,000
+                  </Bubble>
+                  <Bubble userImage="1" userId="1">
+                    미쳤어
+                  </Bubble>
+                  <Bubble userImage="2" userId="2" isMe={true}>
+                    Ok, It's kidding. Let me ask again.
+                  </Bubble>
                 </>
               );
             })}
           </div>
           <div className="w-full mx-auto mx-w-md inset-x-0 px-5">
-            <div className="flex items-center bg-white">
-              <input
-                type="text"
-                className="flex items-center w-full rounded-full m-3 ml-0 border border-gray-400 focus:ring-purple-500 focus:ring-2 focus:border-transparent pl-4 pr-14"
-              />
-              <div className="-ml-[3.25rem] bg-purple-500 rounded-full text-white text-sm py-1.5 px-2.5 hover:bg-purple-600">
-                <button>&rarr;</button>
-              </div>
-            </div>
+            <MessageInput />
           </div>
         </div>
       </div>

@@ -1,8 +1,20 @@
 import type { NextPage } from 'next';
+import LargeButton from '../../components/largeButton';
 import Layout from '../../components/Layout';
 import ProfileBar from '../../components/profileBar';
+import TextArea from '../../components/textArea';
+import User from '../../types/user';
+import Answer from './components/answer';
 
 const CommunityPostDetail: NextPage = () => {
+  const answers: { id: string; user: User; answer: string; time: string }[] = Array.from(Array(10).keys()).map(i => {
+    return {
+      id: i.toString(),
+      user: { id: i.toString(), name: 'Steve Jebs' },
+      answer: 'The best mandu restaurant is the one next to my house.',
+      time: '2시간 전',
+    };
+  });
   return (
     <Layout title="Community Detail" hasTabBar={true} canGoBack={true}>
       <div className="px-5">
@@ -51,30 +63,12 @@ const CommunityPostDetail: NextPage = () => {
             <span>답변 1</span>
           </span>
         </div>
-        {Array.from(Array(10).keys()).map(i => {
-          return (
-            <div key={i} className="border-t border-gray-200">
-              <div className="flex items-start space-x-2 p-2 pl-0">
-                <div className="bg-slate-300 w-10 aspect-square rounded-full" />
-                <div className="flex flex-col">
-                  <span className="font-medium text-gray-800">Steve Jebs</span>
-                  <span className="text-xs text-gray-400">2시간 전</span>
-                  <p className="text-gray-700">The best mandu restaurant is the one next to my house.</p>
-                </div>
-              </div>
-            </div>
-          );
+        {answers.map(answer => {
+          return <Answer id={answer.id} user={answer.user} answer={answer.answer} time={answer.time} />;
         })}
         <div className="mt-4">
-          <textarea
-            name="description"
-            id="description"
-            rows={4}
-            className="appearance-none pl-5 pr-14 w-full border border-gray-300 placeholder:text-gray-400 shadow-sm rounded-md focus:outline-none focus-ring1 focus:ring-purple-400 focus:border-purple-400 resize-none"
-          />
-          <button className="appearance-none w-full h-10 my-5 border border-transparent bg-purple-500 text-white focus:bg-purple-600 focus:outline-none hover:bg-opacity-90 rounded-md shadow-sm text-sm font-medium transition-colors">
-            Reply
-          </button>
+          <TextArea name="answer" />
+          <LargeButton>Reply</LargeButton>
         </div>
       </div>
     </Layout>

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-interface Item {
+interface ItemProps {
   id: string;
   name: string;
   option: string;
@@ -9,7 +9,7 @@ interface Item {
   loveCount: number;
   commentCount: number;
 }
-const ListItem = function ({ id, name, option, image, price, loveCount, commentCount }: Item) {
+const ListItem = function ({ id, name, option, image, price, loveCount, commentCount }: ItemProps) {
   return (
     <Link key={id} className="grid gap-1 grid-cols-10 p-5 cursor-pointer" href={`/items/${id}`}>
       <div className="col-span-2">

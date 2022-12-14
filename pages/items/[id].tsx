@@ -1,19 +1,29 @@
 import type { NextPage } from 'next';
+import LargeButton from '../../components/largeButton';
 import Layout from '../../components/Layout';
+import ProfileBar from '../../components/profileBar';
+import Item from '../../types/Item';
+import CardItemList from './components/cardItemList';
 
 const ItemDetail: NextPage = () => {
+  const relatedItems: Item[] = Array.from(Array(10).keys()).map(i => {
+    return {
+      id: i.toString(),
+      name: 'Galaxy S60',
+      option: 'Air white',
+      image: 'image',
+      price: '$140',
+      loveCount: 100,
+      commentCount: 20,
+    };
+  });
+
   return (
     <Layout title="Items Detail" hasTabBar={true} canGoBack={true}>
       <div className="p-5">
         <div>
           <div className="w-full aspect-square bg-slate-300" />
-          <div className="py-4 flex space-x-5 border-b">
-            <div className="bg-slate-300 w-16 aspect-square rounded-full items-center" />
-            <div className="flex flex-col justify-center">
-              <p className="font-medium">Steve Jebs</p>
-              <button className="text-sm text-gray-400 hover:text-gray-600">View profile &rarr;</button>
-            </div>
-          </div>
+          <ProfileBar userId="1" userName="Steve Jebs" />
           <div className="py-3">
             <h1 className="py-2 text-4xl font-bold">Galaxy S50</h1>
             <p className="py-2 text-3xl">$140</p>
@@ -25,10 +35,8 @@ const ItemDetail: NextPage = () => {
               or anybody else is in there, you the first motherfucker to get shot. You understand?
             </p>
             <div className="flex space-x-2">
-              <button className="w-full h-12 bg-purple-500 rounded-md text-white text-xl hover:bg-purple-600 active:ring-2 ring-purple-600 ring-offset-2">
-                Talk to seller
-              </button>
-              <button className="w-1/12 rounded-md flex justify-center items-center text-2xl text-gray-500 hover:text-gray-700 hover:bg-gray-100 active:text-red-600">
+              <LargeButton klass="h-12">Talk To Seller</LargeButton>
+              <button className="w-1/10 rounded-md flex justify-center items-center text-2xl text-gray-500 hover:text-gray-700 hover:bg-gray-100 active:text-red-600">
                 <svg
                   className="h-6 w-6 "
                   xmlns="http://www.w3.org/2000/svg"
@@ -51,15 +59,7 @@ const ItemDetail: NextPage = () => {
         <div className="w-full border-b my-3" />
         <div className="mt-5">
           <h2 className="mb-5 text-2xl font-bold">Similar items</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {[1, 2, 3, 4, 5, 6].map((_, i) => (
-              <div key={i}>
-                <div className="w-full aspect-square bg-slate-300 mb-3" />
-                <h3 className="text-gray-600">Galaxy S60</h3>
-                <p className="text-gray-900 font-medium">$6</p>
-              </div>
-            ))}
-          </div>
+          <CardItemList itemList={relatedItems} />
         </div>
       </div>
     </Layout>
