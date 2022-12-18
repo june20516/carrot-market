@@ -13,7 +13,7 @@ const TabBar: NextPage = () => {
   const livePath = '/live';
   const chatPath = '/chats';
   const profilePath = '/profile/my';
-  const hilightCurrent = function (currentPath: string, navPath: string): string {
+  const highlightCurrent = function (currentPath: string, navPath: string): string {
     let isMatched: Boolean;
     if (navPath === '/') {
       isMatched = currentPath === navPath;
@@ -28,7 +28,7 @@ const TabBar: NextPage = () => {
       <Link
         className={klassName(
           'flex flex-col justify-center items-center hover:text-white hover:bg-purple-600 w-full h-full cursor-pointer',
-          hilightCurrent(currentPath, communityPath)
+          highlightCurrent(currentPath, communityPath)
         )}
         href={communityPath}
       >
@@ -53,7 +53,7 @@ const TabBar: NextPage = () => {
       <Link
         className={klassName(
           'flex flex-col justify-center items-center hover:text-white hover:bg-purple-600 w-full h-full cursor-pointer',
-          hilightCurrent(currentPath, livePath)
+          highlightCurrent(currentPath, livePath)
         )}
         href={livePath}
       >
@@ -79,8 +79,8 @@ const TabBar: NextPage = () => {
       <Link
         className={klassName(
           'flex flex-col justify-center items-center hover:text-white hover:bg-purple-600 w-full h-full cursor-pointer',
-          hilightCurrent(currentPath, homePath),
-          hilightCurrent(currentPath, itemPath)
+          highlightCurrent(currentPath, homePath),
+          highlightCurrent(currentPath, itemPath)
         )}
         href={homePath}
       >
@@ -105,7 +105,7 @@ const TabBar: NextPage = () => {
       <Link
         className={klassName(
           'flex flex-col justify-center items-center hover:text-white hover:bg-purple-600 w-full h-full cursor-pointer',
-          hilightCurrent(currentPath, chatPath)
+          highlightCurrent(currentPath, chatPath)
         )}
         href={chatPath}
       >
@@ -130,7 +130,7 @@ const TabBar: NextPage = () => {
       <Link
         className={klassName(
           'flex flex-col justify-center items-center hover:text-white hover:bg-purple-600 w-full h-full cursor-pointer',
-          hilightCurrent(currentPath, profilePath)
+          highlightCurrent(currentPath, profilePath)
         )}
         href={profilePath}
       >

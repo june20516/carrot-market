@@ -19,7 +19,7 @@ const TextArea = ({ label, name, content, ...rest }: TextAreaProps) => {
         name={name}
         id={name}
         rows={4}
-        className="appearance-none pl-5 pr-14 w-full border border-gray-300 placeholder:text-gray-400 shadow-sm rounded-md focus:outline-none focus-ring1 focus:ring-purple-400 focus:border-purple-400"
+        className="appearance-none pl-5 pr-14 w-full border border-gray-300 placeholder:text-gray-400 shadow-sm rounded-md focus:outline-none focus:ring-1 focus:ring-purple-400 focus:border-purple-400"
         {...rest}
         value={content}
       />
