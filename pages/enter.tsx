@@ -1,12 +1,28 @@
 import { NextPage } from 'next';
 import { useState } from 'react';
 import { klassName } from '../libs/utils';
+import { useForm } from 'react-hook-form';
+import TextInput from '../components/input/textInput';
+import PhoneNumberInput from '../components/input/phoneNumberInput';
 
+interface EnterForm {
+  email?: string;
+  phoneNumber?: string;
+}
 const Enter: NextPage = () => {
-  const [method, setMethod] = useState<'email' | 'phone'>('email');
+  const { register, handleSubmit, reset } = useForm<EnterForm>();
+  const [method, setMethod] = useState<'email' | 'phoneNumber'>('email');
 
-  const onClickEmail = () => setMethod('email');
-  const onClickPhone = () => setMethod('phone');
+  const onClickEmail = () => {
+    reset();
+    setMethod('email');
+  };
+  const onClickPhone = () => {
+    reset();
+    setMethod('phoneNumber');
+  };
+
+  const onValid = (data: EnterForm) => {};
 
   return (
     <div className="mt-16 flex flex-col items-center">
@@ -26,7 +42,7 @@ const Enter: NextPage = () => {
           <button
             className={klassName(
               'pt-1 px-2 pb-3 border-b-2',
-              method === 'phone' ? 'text-purple-400 border-purple-500' : 'border-transparent'
+              method === 'phoneNumber' ? 'text-purple-400 border-purple-500' : 'border-transparent'
             )}
             onClick={onClickPhone}
           >
@@ -34,37 +50,21 @@ const Enter: NextPage = () => {
           </button>
         </div>
         <form className="p-3">
-          <div hidden={method !== 'email'}>
-            <label htmlFor={method} className="text-sm pb-1 text-gray-400">
-              Email Address
-            </label>
-            <div className="flex">
-              <input
-                type="email"
-                name="email"
-                className="appearance-none px-3 w-full border border-gray-300 placeholder:text-gray-400 shadow-sm rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400"
-                required
+          <div>
+            {method === 'email' ? (
+              <TextInput type="email" name="email" label="Email Address" register={register('email')} />
+            ) : (
+              <PhoneNumberInput
+                type="phoneNumber"
+                name="phoneNumber"
+                label="Phone Number"
+                arrow={false}
+                register={register('phoneNumber')}
               />
-            </div>
-          </div>
-          <div hidden={method !== 'phone'}>
-            <label htmlFor={method} className="text-sm pb-1 text-gray-400">
-              Phone Number
-            </label>
-            <div className="flex">
-              <span className="flex items-center justify-center p-2 border border-r-0 border-gray-300 shadow-sm rounded-l-md bg-gray-100 text-gray-500 select-none text-sm">
-                +82
-              </span>
-              <input
-                type="number"
-                name="phone"
-                className="appearance-none px-3 w-full border border-gray-300 placeholder:text-gray-400 shadow-sm rounded-r-md border-l-0 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400"
-                required
-              />
-            </div>
+            )}
           </div>
           <button className="appearance-none w-full h-10 my-5 border border-transparent bg-purple-500 text-white focus:bg-purple-600 focus:outline-none hover:bg-opacity-90 rounded-md shadow-sm text-sm font-medium transition-colors">
-            {method === 'phone' ? 'Get one-time password' : 'Get login link'}
+            {method === 'phoneNumber' ? 'Get one-time password' : 'Get login link'}
           </button>
         </form>
         <div className="mt-6 p-3">

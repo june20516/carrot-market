@@ -1,4 +1,6 @@
 import { NextPage } from 'next';
+import PhoneNumberInput from '../../../components/input/phoneNumberInput';
+import TextInput from '../../../components/input/textInput';
 
 const EditProfile: NextPage = () => {
   return (
@@ -28,33 +30,8 @@ const EditProfile: NextPage = () => {
       </div>
       <div className="w-full mt-10">
         <form className="p-3">
-          <label htmlFor="email" className="text-sm pb-1 text-gray-400">
-            Email Address
-          </label>
-          <div className="flex">
-            <input
-              id="email"
-              type="email"
-              name="email"
-              className="appearance-none px-3 w-full border border-gray-300 placeholder:text-gray-400 shadow-sm rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400"
-              required
-            />
-          </div>
-          <label htmlFor="phone" className="text-sm pb-1 text-gray-400">
-            Phone Number
-          </label>
-          <div className="flex focus-within:ring-2 focus-within:ring-purple-400  rounded-md group">
-            <span className="flex items-center justify-center p-2 border border-r-0 border-gray-300 group-focus-within:border-purple-400 shadow-sm rounded-l-md bg-gray-100 text-gray-500 select-none text-sm">
-              +82
-            </span>
-            <input
-              id="phone"
-              type="number"
-              name="phone"
-              className="outline-none px-3 w-full border border-gray-300 placeholder:text-gray-400 shadow-sm rounded-r-md border-l-0 arrow-none focus:border-purple-400 focus:ring-transparent"
-              required
-            />
-          </div>
+          <TextInput type="email" name="email" label="Email" />
+          <PhoneNumberInput type="phoneNumber" name="phoneNumber" label="Phone Number" />
           <button className="appearance-none w-full h-10 my-5 border border-transparent bg-purple-500 text-white focus:bg-purple-600 focus:outline-none hover:bg-opacity-90 rounded-md shadow-sm text-sm font-medium transition-colors">
             Update Profile
           </button>

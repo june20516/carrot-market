@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
-import Input from '../../components/Input';
+import PriceInput from '../../components/input/priceInput';
+import TextInput from '../../components/input/textInput';
 import LargeButton from '../../components/largeButton';
 import Layout from '../../components/Layout';
 import TextArea from '../../components/textArea';
@@ -25,10 +26,10 @@ const Upload: NextPage = () => {
           </label>
         </div>
         <div className="pt-6">
-          <Input type="text" name="name" label="Name" />
+          <TextInput type="text" name="name" label="Name" />
         </div>
         <div className="py-6">
-          <Input type="price" name="price" label="Price" currency="USD" symbol={'$'} arrow={false} />
+          <PriceInput type="price" name="price" label="Price" currency="USD" symbol={'$'} arrow={false} />
         </div>
         <TextArea label="Description" name="description" />
         <LargeButton>Upload Item</LargeButton>

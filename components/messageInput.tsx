@@ -2,10 +2,9 @@ import { klassName } from '../libs/utils';
 
 interface MessageInputProps {
   klass?: string;
-  [key: string]: any;
 }
 
-const MessageInput = function ({ klass, ...rest }: MessageInputProps) {
+const MessageInput = function ({ klass }: MessageInputProps) {
   return (
     <div className="flex items-center bg-white">
       <input
