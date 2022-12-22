@@ -2,7 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { klassName } from '../../libs/utils';
+import { klassName } from '../../libs/client/utils';
 
 const TabBar: NextPage = () => {
   const router = useRouter();

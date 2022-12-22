@@ -1,4 +1,4 @@
-import { klassName } from '../../libs/utils';
+import { klassName } from '../../libs/client/utils';
 import { PriceInputProps } from './props';
 
 const PriceInput = function ({ name, label, klass, disabled, symbol, currency, arrow, register }: PriceInputProps) {

@@ -1,4 +1,4 @@
-import { klassName } from '../../libs/utils';
+import { klassName } from '../../libs/client/utils';
 import { NumberInputProps } from './props';
 
 const NumberInput = function ({ name, label, klass, disabled, arrow, register }: NumberInputProps) {
