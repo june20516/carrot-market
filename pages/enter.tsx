@@ -26,6 +26,8 @@ const Enter: NextPage = () => {
   };
 
   const onValid = async (formData: EnterForm) => {
+    if (loading) return;
+
     enter(formData);
     if (!loading) {
       console.log(data);
@@ -74,9 +76,16 @@ const Enter: NextPage = () => {
               />
             )}
           </div>
-          <LargeButton {...(loading ? { disabled: true } : { disabled: false })}>
+          <LargeButton klass="mt-4" hidden={loading}>
             {method === 'phoneNumber' ? 'Get one-time password' : 'Get login link'}
           </LargeButton>
+          <div
+            className={`mt-4 my-1 flex justify-center items-center font-medium text-lg text-purple-500 ${
+              !loading && 'hidden'
+            }`}
+          >
+            Loading...
+          </div>
         </form>
         <div className="mt-6 p-3">
           <div className="relative">
