@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
-import PriceInput from '../../components/input/priceInput';
-import TextInput from '../../components/input/textInput';
-import LargeButton from '../../components/largeButton';
-import Layout from '../../components/Layout';
-import TextArea from '../../components/textArea';
+import PriceInput from 'components/input/priceInput';
+import TextInput from 'components/input/textInput';
+import LargeButton from 'components/largeButton';
+import Layout from 'components/Layout';
+import TextArea from 'components/textArea';
 
 const Upload: NextPage = () => {
   return (

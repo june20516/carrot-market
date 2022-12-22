@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Item from '../../../types/Item';
+import Item from 'types/Item';
 
 const CardItem = function ({ id, name, price }: Item) {
   return (

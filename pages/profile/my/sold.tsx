@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
-import FloatingButton from '../../../components/floatingButton';
-import Layout from '../../../components/Layout';
+import FloatingButton from 'components/floatingButton';
+import Layout from 'components/Layout';
 
 const Sold: NextPage = () => {
   return (

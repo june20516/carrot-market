@@ -1,4 +1,4 @@
-import { klassName } from '../libs/client/utils';
+import { klassName } from 'libs/client/utils';
 
 interface MessageInputProps {
   klass?: string;

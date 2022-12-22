@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
-import LargeButton from '../../components/largeButton';
-import Layout from '../../components/Layout';
-import ProfileBar from '../../components/profileBar';
-import TextArea from '../../components/textArea';
-import User from '../../types/user';
+import LargeButton from 'components/largeButton';
+import Layout from 'components/Layout';
+import ProfileBar from 'components/profileBar';
+import TextArea from 'components/textArea';
+import User from 'types/user';
 import Answer from './components/answer';
 
 const CommunityPostDetail: NextPage = () => {

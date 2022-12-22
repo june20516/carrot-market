@@ -1,8 +1,8 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
-import Layout from '../../../components/Layout';
-import ProfileBar from '../../../components/profileBar';
-import Review from '../components/review';
+import Layout from 'components/Layout';
+import ProfileBar from 'components/profileBar';
+import Review from 'components/review';
 
 const MyProfile: NextPage = () => {
   return (

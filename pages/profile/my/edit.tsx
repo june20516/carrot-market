@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
-import PhoneNumberInput from '../../../components/input/phoneNumberInput';
-import TextInput from '../../../components/input/textInput';
+import PhoneNumberInput from 'components/input/phoneNumberInput';
+import TextInput from 'components/input/textInput';
 
 const EditProfile: NextPage = () => {
   return (

@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import Layout from '../../../components/Layout';
+import Layout from 'components/Layout';
 import ListItem from '../../items/components/listItem';
 
 const Interested: NextPage = () => {

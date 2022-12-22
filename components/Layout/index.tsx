@@ -1,5 +1,5 @@
 import React from 'react';
-import { klassName } from '../../libs/client/utils';
+import { klassName } from 'libs/client/utils';
 import BackButton from './backButton';
 import TabBar from './tabBar';
 

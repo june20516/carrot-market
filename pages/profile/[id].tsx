@@ -1,8 +1,8 @@
 import { NextPage } from 'next';
 import { useState } from 'react';
-import Layout from '../../components/Layout';
-import ProfileBar from '../../components/profileBar';
-import { klassName } from '../../libs/client/utils';
+import Layout from 'components/Layout';
+import ProfileBar from 'components/profileBar';
+import { klassName } from 'libs/client/utils';
 import ListItem from '../items/components/listItem';
 import Review from './components/review';
 

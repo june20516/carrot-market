@@ -1,11 +1,11 @@
 import { NextPage } from 'next';
 import { useState } from 'react';
-import { klassName } from '../libs/client/utils';
+import { klassName } from 'libs/client/utils';
 import { useForm } from 'react-hook-form';
-import TextInput from '../components/input/textInput';
-import PhoneNumberInput from '../components/input/phoneNumberInput';
-import useMutation from '../libs/client/useMutation';
-import LargeButton from '../components/largeButton';
+import TextInput from 'components/input/textInput';
+import PhoneNumberInput from 'components/input/phoneNumberInput';
+import useMutation from 'libs/client/useMutation';
+import LargeButton from 'components/largeButton';
 
 interface EnterForm {
   email?: string;

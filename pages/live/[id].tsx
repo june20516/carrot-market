@@ -1,8 +1,8 @@
 import { NextPage } from 'next';
-import Bubble from '../../components/bubble';
-import LargeButton from '../../components/largeButton';
-import Layout from '../../components/Layout';
-import MessageInput from '../../components/messageInput';
+import Bubble from 'components/bubble';
+import LargeButton from 'components/largeButton';
+import Layout from 'components/Layout';
+import MessageInput from 'components/messageInput';
 
 const LiveDetail: NextPage = () => {
   return (

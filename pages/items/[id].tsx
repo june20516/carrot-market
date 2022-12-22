@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
-import LargeButton from '../../components/largeButton';
-import Layout from '../../components/Layout';
-import ProfileBar from '../../components/profileBar';
-import Item from '../../types/Item';
+import LargeButton from 'components/largeButton';
+import Layout from 'components/Layout';
+import ProfileBar from 'components/profileBar';
+import Item from 'types/Item';
 import CardItemList from './components/cardItemList';
 
 const ItemDetail: NextPage = () => {

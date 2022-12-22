@@ -1,4 +1,4 @@
-import { klassName } from '../../libs/client/utils';
+import { klassName } from 'libs/client/utils';
 import { TextInputProps } from './props';
 
 const TextInput = function ({ name, type, value, label, klass, disabled, register }: TextInputProps) {
