@@ -4,6 +4,7 @@ import { klassName } from '../libs/client/utils';
 import { useForm } from 'react-hook-form';
 import TextInput from '../components/input/textInput';
 import PhoneNumberInput from '../components/input/phoneNumberInput';
+import useMutation from '../libs/client/useMutation';
 import LargeButton from '../components/largeButton';
 
 interface EnterForm {
@@ -13,6 +14,7 @@ interface EnterForm {
 const Enter: NextPage = () => {
   const { register, handleSubmit, reset } = useForm<EnterForm>();
   const [method, setMethod] = useState<'email' | 'phoneNumber'>('email');
+  const [enter, { loading, data, error }] = useMutation('/api/users/enter');
 
   const onClickEmail = () => {
     reset();
@@ -23,7 +25,15 @@ const Enter: NextPage = () => {
     setMethod('phoneNumber');
   };
 
-  const onValid = (data: EnterForm) => {};
+  const onValid = async (formData: EnterForm) => {
+    enter(formData);
+    if (!loading) {
+      console.log(data);
+    }
+    if (error) {
+      alert(error);
+    }
+  };
 
   return (
     <div className="mt-16 flex flex-col items-center">
@@ -50,7 +60,7 @@ const Enter: NextPage = () => {
             Phone Number
           </button>
         </div>
-        <form className="p-3">
+        <form className="p-3" onSubmit={handleSubmit(onValid)}>
           <div>
             {method === 'email' ? (
               <TextInput type="email" name="email" label="Email Address" register={register('email')} />
@@ -64,9 +74,9 @@ const Enter: NextPage = () => {
               />
             )}
           </div>
-          <button className="appearance-none w-full h-10 my-5 border border-transparent bg-purple-500 text-white focus:bg-purple-600 focus:outline-none hover:bg-opacity-90 rounded-md shadow-sm text-sm font-medium transition-colors">
+          <LargeButton {...(loading ? { disabled: true } : { disabled: false })}>
             {method === 'phoneNumber' ? 'Get one-time password' : 'Get login link'}
-          </button>
+          </LargeButton>
         </form>
         <div className="mt-6 p-3">
           <div className="relative">
