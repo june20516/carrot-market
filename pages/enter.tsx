@@ -14,7 +14,7 @@ interface EnterForm {
 const Enter: NextPage = () => {
   const { register, handleSubmit, reset } = useForm<EnterForm>();
   const [method, setMethod] = useState<'email' | 'phoneNumber'>('email');
-  const [enter, { loading, data, error }] = useMutation('/api/users/enter');
+  const [enter, { loading, responseData, error }] = useMutation('/api/users/enter');
 
   const onClickEmail = () => {
     reset();
@@ -25,16 +25,10 @@ const Enter: NextPage = () => {
     setMethod('phoneNumber');
   };
 
-  const onValid = async (formData: EnterForm) => {
+  const onValid = (formData: EnterForm) => {
     if (loading) return;
 
     enter(formData);
-    if (!loading) {
-      console.log(data);
-    }
-    if (error) {
-      alert(error);
-    }
   };
 
   return (
