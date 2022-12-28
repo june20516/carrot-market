@@ -13,19 +13,31 @@ datasource db {
 }
 
 model User {
-  id               Int       @id @default(autoincrement())
-  phoneNumber      Int?      @unique
-  email            String?   @unique
+  id               Int         @id @default(autoincrement())
+  phoneNumber      Int?        @unique
+  email            String?     @unique
   name             String
   image            String?
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  soldItems        Item[]    @relation("soldItems")
-  boughtItems      Item[]    @relation("boughtItems")
-  askingChats      Chat[]    @relation("askerChat")
-  answeringChats   Chat[]    @relation("answererChat")
-  sendedMessages   Message[] @relation("sendedMessages")
-  receivedMessages Message[] @relation("receivedMessages")
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  soldItems        Item[]      @relation("soldItems")
+  boughtItems      Item[]      @relation("boughtItems")
+  askingChats      Chat[]      @relation("askerChat")
+  answeringChats   Chat[]      @relation("answererChat")
+  sendedMessages   Message[]   @relation("sendedMessages")
+  receivedMessages Message[]   @relation("receivedMessages")
+  tokens           UserToken[]
+}
+
+model UserToken {
+  id        Int      @id @default(autoincrement())
+  payload   String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
 }
 
 model Item {

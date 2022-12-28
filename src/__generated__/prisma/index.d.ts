@@ -27,6 +27,18 @@ export type User = {
 }
 
 /**
+ * Model UserToken
+ * 
+ */
+export type UserToken = {
+  id: number
+  payload: string
+  userId: number
+  createdAt: Date
+  updatedAt: Date
+}
+
+/**
  * Model Item
  * 
  */
@@ -194,6 +206,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<GlobalReject>;
+
+  /**
+   * `prisma.userToken`: Exposes CRUD operations for the **UserToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserTokens
+    * const userTokens = await prisma.userToken.findMany()
+    * ```
+    */
+  get userToken(): Prisma.UserTokenDelegate<GlobalReject>;
 
   /**
    * `prisma.item`: Exposes CRUD operations for the **Item** model.
@@ -709,6 +731,7 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
+    UserToken: 'UserToken',
     Item: 'Item',
     Chat: 'Chat',
     Message: 'Message'
@@ -887,6 +910,7 @@ export namespace Prisma {
     answeringChats: number
     sendedMessages: number
     receivedMessages: number
+    tokens: number
   }
 
   export type UserCountOutputTypeSelect = {
@@ -896,6 +920,7 @@ export namespace Prisma {
     answeringChats?: boolean
     sendedMessages?: boolean
     receivedMessages?: boolean
+    tokens?: boolean
   }
 
   export type UserCountOutputTypeGetPayload<S extends boolean | null | undefined | UserCountOutputTypeArgs> =
@@ -1252,6 +1277,7 @@ export namespace Prisma {
     answeringChats?: boolean | ChatFindManyArgs
     sendedMessages?: boolean | MessageFindManyArgs
     receivedMessages?: boolean | MessageFindManyArgs
+    tokens?: boolean | UserTokenFindManyArgs
     _count?: boolean | UserCountOutputTypeArgs
   }
 
@@ -1263,6 +1289,7 @@ export namespace Prisma {
     answeringChats?: boolean | ChatFindManyArgs
     sendedMessages?: boolean | MessageFindManyArgs
     receivedMessages?: boolean | MessageFindManyArgs
+    tokens?: boolean | UserTokenFindManyArgs
     _count?: boolean | UserCountOutputTypeArgs
   } 
 
@@ -1279,6 +1306,7 @@ export namespace Prisma {
         P extends 'answeringChats' ? Array < ChatGetPayload<S['include'][P]>>  :
         P extends 'sendedMessages' ? Array < MessageGetPayload<S['include'][P]>>  :
         P extends 'receivedMessages' ? Array < MessageGetPayload<S['include'][P]>>  :
+        P extends 'tokens' ? Array < UserTokenGetPayload<S['include'][P]>>  :
         P extends '_count' ? UserCountOutputTypeGetPayload<S['include'][P]> :  never
   } 
     : S extends { select: any } & (UserArgs | UserFindManyArgs)
@@ -1290,6 +1318,7 @@ export namespace Prisma {
         P extends 'answeringChats' ? Array < ChatGetPayload<S['select'][P]>>  :
         P extends 'sendedMessages' ? Array < MessageGetPayload<S['select'][P]>>  :
         P extends 'receivedMessages' ? Array < MessageGetPayload<S['select'][P]>>  :
+        P extends 'tokens' ? Array < UserTokenGetPayload<S['select'][P]>>  :
         P extends '_count' ? UserCountOutputTypeGetPayload<S['select'][P]> :  P extends keyof User ? User[P] : never
   } 
       : User
@@ -1675,6 +1704,8 @@ export namespace Prisma {
     sendedMessages<T extends MessageFindManyArgs= {}>(args?: Subset<T, MessageFindManyArgs>): PrismaPromise<Array<MessageGetPayload<T>>| Null>;
 
     receivedMessages<T extends MessageFindManyArgs= {}>(args?: Subset<T, MessageFindManyArgs>): PrismaPromise<Array<MessageGetPayload<T>>| Null>;
+
+    tokens<T extends UserTokenFindManyArgs= {}>(args?: Subset<T, UserTokenFindManyArgs>): PrismaPromise<Array<UserTokenGetPayload<T>>| Null>;
 
     private get _document();
     /**
@@ -2093,6 +2124,1032 @@ export namespace Prisma {
      * 
     **/
     include?: UserInclude | null
+  }
+
+
+
+  /**
+   * Model UserToken
+   */
+
+
+  export type AggregateUserToken = {
+    _count: UserTokenCountAggregateOutputType | null
+    _avg: UserTokenAvgAggregateOutputType | null
+    _sum: UserTokenSumAggregateOutputType | null
+    _min: UserTokenMinAggregateOutputType | null
+    _max: UserTokenMaxAggregateOutputType | null
+  }
+
+  export type UserTokenAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type UserTokenSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type UserTokenMinAggregateOutputType = {
+    id: number | null
+    payload: string | null
+    userId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserTokenMaxAggregateOutputType = {
+    id: number | null
+    payload: string | null
+    userId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserTokenCountAggregateOutputType = {
+    id: number
+    payload: number
+    userId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserTokenAvgAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type UserTokenSumAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type UserTokenMinAggregateInputType = {
+    id?: true
+    payload?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserTokenMaxAggregateInputType = {
+    id?: true
+    payload?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserTokenCountAggregateInputType = {
+    id?: true
+    payload?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserTokenAggregateArgs = {
+    /**
+     * Filter which UserToken to aggregate.
+     * 
+    **/
+    where?: UserTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserTokens to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<UserTokenOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     * 
+    **/
+    cursor?: UserTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserTokens from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserTokens.
+     * 
+    **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserTokens
+    **/
+    _count?: true | UserTokenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserTokenAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserTokenSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserTokenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserTokenMaxAggregateInputType
+  }
+
+  export type GetUserTokenAggregateType<T extends UserTokenAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserToken]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserToken[P]>
+      : GetScalarType<T[P], AggregateUserToken[P]>
+  }
+
+
+
+
+  export type UserTokenGroupByArgs = {
+    where?: UserTokenWhereInput
+    orderBy?: Enumerable<UserTokenOrderByWithAggregationInput>
+    by: Array<UserTokenScalarFieldEnum>
+    having?: UserTokenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserTokenCountAggregateInputType | true
+    _avg?: UserTokenAvgAggregateInputType
+    _sum?: UserTokenSumAggregateInputType
+    _min?: UserTokenMinAggregateInputType
+    _max?: UserTokenMaxAggregateInputType
+  }
+
+
+  export type UserTokenGroupByOutputType = {
+    id: number
+    payload: string
+    userId: number
+    createdAt: Date
+    updatedAt: Date
+    _count: UserTokenCountAggregateOutputType | null
+    _avg: UserTokenAvgAggregateOutputType | null
+    _sum: UserTokenSumAggregateOutputType | null
+    _min: UserTokenMinAggregateOutputType | null
+    _max: UserTokenMaxAggregateOutputType | null
+  }
+
+  type GetUserTokenGroupByPayload<T extends UserTokenGroupByArgs> = PrismaPromise<
+    Array<
+      PickArray<UserTokenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserTokenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserTokenGroupByOutputType[P]>
+            : GetScalarType<T[P], UserTokenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserTokenSelect = {
+    id?: boolean
+    payload?: boolean
+    user?: boolean | UserArgs
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type UserTokenInclude = {
+    user?: boolean | UserArgs
+  } 
+
+  export type UserTokenGetPayload<S extends boolean | null | undefined | UserTokenArgs> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? UserToken :
+    S extends undefined ? never :
+    S extends { include: any } & (UserTokenArgs | UserTokenFindManyArgs)
+    ? UserToken  & {
+    [P in TruthyKeys<S['include']>]:
+        P extends 'user' ? UserGetPayload<S['include'][P]> :  never
+  } 
+    : S extends { select: any } & (UserTokenArgs | UserTokenFindManyArgs)
+      ? {
+    [P in TruthyKeys<S['select']>]:
+        P extends 'user' ? UserGetPayload<S['select'][P]> :  P extends keyof UserToken ? UserToken[P] : never
+  } 
+      : UserToken
+
+
+  type UserTokenCountArgs = Merge<
+    Omit<UserTokenFindManyArgs, 'select' | 'include'> & {
+      select?: UserTokenCountAggregateInputType | true
+    }
+  >
+
+  export interface UserTokenDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+    /**
+     * Find zero or one UserToken that matches the filter.
+     * @param {UserTokenFindUniqueArgs} args - Arguments to find a UserToken
+     * @example
+     * // Get one UserToken
+     * const userToken = await prisma.userToken.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends UserTokenFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, UserTokenFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'UserToken'> extends True ? Prisma__UserTokenClient<UserTokenGetPayload<T>> : Prisma__UserTokenClient<UserTokenGetPayload<T> | null, null>
+
+    /**
+     * Find one UserToken that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {UserTokenFindUniqueOrThrowArgs} args - Arguments to find a UserToken
+     * @example
+     * // Get one UserToken
+     * const userToken = await prisma.userToken.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends UserTokenFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, UserTokenFindUniqueOrThrowArgs>
+    ): Prisma__UserTokenClient<UserTokenGetPayload<T>>
+
+    /**
+     * Find the first UserToken that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserTokenFindFirstArgs} args - Arguments to find a UserToken
+     * @example
+     * // Get one UserToken
+     * const userToken = await prisma.userToken.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends UserTokenFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, UserTokenFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'UserToken'> extends True ? Prisma__UserTokenClient<UserTokenGetPayload<T>> : Prisma__UserTokenClient<UserTokenGetPayload<T> | null, null>
+
+    /**
+     * Find the first UserToken that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserTokenFindFirstOrThrowArgs} args - Arguments to find a UserToken
+     * @example
+     * // Get one UserToken
+     * const userToken = await prisma.userToken.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends UserTokenFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, UserTokenFindFirstOrThrowArgs>
+    ): Prisma__UserTokenClient<UserTokenGetPayload<T>>
+
+    /**
+     * Find zero or more UserTokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserTokenFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserTokens
+     * const userTokens = await prisma.userToken.findMany()
+     * 
+     * // Get first 10 UserTokens
+     * const userTokens = await prisma.userToken.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userTokenWithIdOnly = await prisma.userToken.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends UserTokenFindManyArgs>(
+      args?: SelectSubset<T, UserTokenFindManyArgs>
+    ): PrismaPromise<Array<UserTokenGetPayload<T>>>
+
+    /**
+     * Create a UserToken.
+     * @param {UserTokenCreateArgs} args - Arguments to create a UserToken.
+     * @example
+     * // Create one UserToken
+     * const UserToken = await prisma.userToken.create({
+     *   data: {
+     *     // ... data to create a UserToken
+     *   }
+     * })
+     * 
+    **/
+    create<T extends UserTokenCreateArgs>(
+      args: SelectSubset<T, UserTokenCreateArgs>
+    ): Prisma__UserTokenClient<UserTokenGetPayload<T>>
+
+    /**
+     * Create many UserTokens.
+     *     @param {UserTokenCreateManyArgs} args - Arguments to create many UserTokens.
+     *     @example
+     *     // Create many UserTokens
+     *     const userToken = await prisma.userToken.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends UserTokenCreateManyArgs>(
+      args?: SelectSubset<T, UserTokenCreateManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a UserToken.
+     * @param {UserTokenDeleteArgs} args - Arguments to delete one UserToken.
+     * @example
+     * // Delete one UserToken
+     * const UserToken = await prisma.userToken.delete({
+     *   where: {
+     *     // ... filter to delete one UserToken
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends UserTokenDeleteArgs>(
+      args: SelectSubset<T, UserTokenDeleteArgs>
+    ): Prisma__UserTokenClient<UserTokenGetPayload<T>>
+
+    /**
+     * Update one UserToken.
+     * @param {UserTokenUpdateArgs} args - Arguments to update one UserToken.
+     * @example
+     * // Update one UserToken
+     * const userToken = await prisma.userToken.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends UserTokenUpdateArgs>(
+      args: SelectSubset<T, UserTokenUpdateArgs>
+    ): Prisma__UserTokenClient<UserTokenGetPayload<T>>
+
+    /**
+     * Delete zero or more UserTokens.
+     * @param {UserTokenDeleteManyArgs} args - Arguments to filter UserTokens to delete.
+     * @example
+     * // Delete a few UserTokens
+     * const { count } = await prisma.userToken.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends UserTokenDeleteManyArgs>(
+      args?: SelectSubset<T, UserTokenDeleteManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserTokenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserTokens
+     * const userToken = await prisma.userToken.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends UserTokenUpdateManyArgs>(
+      args: SelectSubset<T, UserTokenUpdateManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one UserToken.
+     * @param {UserTokenUpsertArgs} args - Arguments to update or create a UserToken.
+     * @example
+     * // Update or create a UserToken
+     * const userToken = await prisma.userToken.upsert({
+     *   create: {
+     *     // ... data to create a UserToken
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserToken we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends UserTokenUpsertArgs>(
+      args: SelectSubset<T, UserTokenUpsertArgs>
+    ): Prisma__UserTokenClient<UserTokenGetPayload<T>>
+
+    /**
+     * Count the number of UserTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserTokenCountArgs} args - Arguments to filter UserTokens to count.
+     * @example
+     * // Count the number of UserTokens
+     * const count = await prisma.userToken.count({
+     *   where: {
+     *     // ... the filter for the UserTokens we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserTokenCountArgs>(
+      args?: Subset<T, UserTokenCountArgs>,
+    ): PrismaPromise<
+      T extends _Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserTokenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserTokenAggregateArgs>(args: Subset<T, UserTokenAggregateArgs>): PrismaPromise<GetUserTokenAggregateType<T>>
+
+    /**
+     * Group by UserToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserTokenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserTokenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserTokenGroupByArgs['orderBy'] }
+        : { orderBy?: UserTokenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserTokenGroupByPayload<T> : PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserToken.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__UserTokenClient<T, Null = never> implements PrismaPromise<T> {
+    [prisma]: true;
+    private readonly _dmmf;
+    private readonly _fetcher;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    constructor(_dmmf: runtime.DMMFClass, _fetcher: PrismaClientFetcher, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+    readonly [Symbol.toStringTag]: 'PrismaClientPromise';
+
+    user<T extends UserArgs= {}>(args?: Subset<T, UserArgs>): Prisma__UserClient<UserGetPayload<T> | Null>;
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * UserToken base type for findUnique actions
+   */
+  export type UserTokenFindUniqueArgsBase = {
+    /**
+     * Select specific fields to fetch from the UserToken
+     * 
+    **/
+    select?: UserTokenSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     * 
+    **/
+    include?: UserTokenInclude | null
+    /**
+     * Filter, which UserToken to fetch.
+     * 
+    **/
+    where: UserTokenWhereUniqueInput
+  }
+
+  /**
+   * UserToken: findUnique
+   */
+  export interface UserTokenFindUniqueArgs extends UserTokenFindUniqueArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * UserToken findUniqueOrThrow
+   */
+  export type UserTokenFindUniqueOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the UserToken
+     * 
+    **/
+    select?: UserTokenSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     * 
+    **/
+    include?: UserTokenInclude | null
+    /**
+     * Filter, which UserToken to fetch.
+     * 
+    **/
+    where: UserTokenWhereUniqueInput
+  }
+
+
+  /**
+   * UserToken base type for findFirst actions
+   */
+  export type UserTokenFindFirstArgsBase = {
+    /**
+     * Select specific fields to fetch from the UserToken
+     * 
+    **/
+    select?: UserTokenSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     * 
+    **/
+    include?: UserTokenInclude | null
+    /**
+     * Filter, which UserToken to fetch.
+     * 
+    **/
+    where?: UserTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserTokens to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<UserTokenOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserTokens.
+     * 
+    **/
+    cursor?: UserTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserTokens from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserTokens.
+     * 
+    **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserTokens.
+     * 
+    **/
+    distinct?: Enumerable<UserTokenScalarFieldEnum>
+  }
+
+  /**
+   * UserToken: findFirst
+   */
+  export interface UserTokenFindFirstArgs extends UserTokenFindFirstArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * UserToken findFirstOrThrow
+   */
+  export type UserTokenFindFirstOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the UserToken
+     * 
+    **/
+    select?: UserTokenSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     * 
+    **/
+    include?: UserTokenInclude | null
+    /**
+     * Filter, which UserToken to fetch.
+     * 
+    **/
+    where?: UserTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserTokens to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<UserTokenOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserTokens.
+     * 
+    **/
+    cursor?: UserTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserTokens from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserTokens.
+     * 
+    **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserTokens.
+     * 
+    **/
+    distinct?: Enumerable<UserTokenScalarFieldEnum>
+  }
+
+
+  /**
+   * UserToken findMany
+   */
+  export type UserTokenFindManyArgs = {
+    /**
+     * Select specific fields to fetch from the UserToken
+     * 
+    **/
+    select?: UserTokenSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     * 
+    **/
+    include?: UserTokenInclude | null
+    /**
+     * Filter, which UserTokens to fetch.
+     * 
+    **/
+    where?: UserTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserTokens to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<UserTokenOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserTokens.
+     * 
+    **/
+    cursor?: UserTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserTokens from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserTokens.
+     * 
+    **/
+    skip?: number
+    distinct?: Enumerable<UserTokenScalarFieldEnum>
+  }
+
+
+  /**
+   * UserToken create
+   */
+  export type UserTokenCreateArgs = {
+    /**
+     * Select specific fields to fetch from the UserToken
+     * 
+    **/
+    select?: UserTokenSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     * 
+    **/
+    include?: UserTokenInclude | null
+    /**
+     * The data needed to create a UserToken.
+     * 
+    **/
+    data: XOR<UserTokenCreateInput, UserTokenUncheckedCreateInput>
+  }
+
+
+  /**
+   * UserToken createMany
+   */
+  export type UserTokenCreateManyArgs = {
+    /**
+     * The data used to create many UserTokens.
+     * 
+    **/
+    data: Enumerable<UserTokenCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * UserToken update
+   */
+  export type UserTokenUpdateArgs = {
+    /**
+     * Select specific fields to fetch from the UserToken
+     * 
+    **/
+    select?: UserTokenSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     * 
+    **/
+    include?: UserTokenInclude | null
+    /**
+     * The data needed to update a UserToken.
+     * 
+    **/
+    data: XOR<UserTokenUpdateInput, UserTokenUncheckedUpdateInput>
+    /**
+     * Choose, which UserToken to update.
+     * 
+    **/
+    where: UserTokenWhereUniqueInput
+  }
+
+
+  /**
+   * UserToken updateMany
+   */
+  export type UserTokenUpdateManyArgs = {
+    /**
+     * The data used to update UserTokens.
+     * 
+    **/
+    data: XOR<UserTokenUpdateManyMutationInput, UserTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which UserTokens to update
+     * 
+    **/
+    where?: UserTokenWhereInput
+  }
+
+
+  /**
+   * UserToken upsert
+   */
+  export type UserTokenUpsertArgs = {
+    /**
+     * Select specific fields to fetch from the UserToken
+     * 
+    **/
+    select?: UserTokenSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     * 
+    **/
+    include?: UserTokenInclude | null
+    /**
+     * The filter to search for the UserToken to update in case it exists.
+     * 
+    **/
+    where: UserTokenWhereUniqueInput
+    /**
+     * In case the UserToken found by the `where` argument doesn't exist, create a new UserToken with this data.
+     * 
+    **/
+    create: XOR<UserTokenCreateInput, UserTokenUncheckedCreateInput>
+    /**
+     * In case the UserToken was found with the provided `where` argument, update it with this data.
+     * 
+    **/
+    update: XOR<UserTokenUpdateInput, UserTokenUncheckedUpdateInput>
+  }
+
+
+  /**
+   * UserToken delete
+   */
+  export type UserTokenDeleteArgs = {
+    /**
+     * Select specific fields to fetch from the UserToken
+     * 
+    **/
+    select?: UserTokenSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     * 
+    **/
+    include?: UserTokenInclude | null
+    /**
+     * Filter which UserToken to delete.
+     * 
+    **/
+    where: UserTokenWhereUniqueInput
+  }
+
+
+  /**
+   * UserToken deleteMany
+   */
+  export type UserTokenDeleteManyArgs = {
+    /**
+     * Filter which UserTokens to delete
+     * 
+    **/
+    where?: UserTokenWhereInput
+  }
+
+
+  /**
+   * UserToken without action
+   */
+  export type UserTokenArgs = {
+    /**
+     * Select specific fields to fetch from the UserToken
+     * 
+    **/
+    select?: UserTokenSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     * 
+    **/
+    include?: UserTokenInclude | null
   }
 
 
@@ -5361,6 +6418,17 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const UserTokenScalarFieldEnum: {
+    id: 'id',
+    payload: 'payload',
+    userId: 'userId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserTokenScalarFieldEnum = (typeof UserTokenScalarFieldEnum)[keyof typeof UserTokenScalarFieldEnum]
+
+
   /**
    * Deep Input Types
    */
@@ -5383,6 +6451,7 @@ export namespace Prisma {
     answeringChats?: ChatListRelationFilter
     sendedMessages?: MessageListRelationFilter
     receivedMessages?: MessageListRelationFilter
+    tokens?: UserTokenListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -5399,6 +6468,7 @@ export namespace Prisma {
     answeringChats?: ChatOrderByRelationAggregateInput
     sendedMessages?: MessageOrderByRelationAggregateInput
     receivedMessages?: MessageOrderByRelationAggregateInput
+    tokens?: UserTokenOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = {
@@ -5431,6 +6501,56 @@ export namespace Prisma {
     email?: StringNullableWithAggregatesFilter | string | null
     name?: StringWithAggregatesFilter | string
     image?: StringNullableWithAggregatesFilter | string | null
+    createdAt?: DateTimeWithAggregatesFilter | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter | Date | string
+  }
+
+  export type UserTokenWhereInput = {
+    AND?: Enumerable<UserTokenWhereInput>
+    OR?: Enumerable<UserTokenWhereInput>
+    NOT?: Enumerable<UserTokenWhereInput>
+    id?: IntFilter | number
+    payload?: StringFilter | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    userId?: IntFilter | number
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+  }
+
+  export type UserTokenOrderByWithRelationInput = {
+    id?: SortOrder
+    payload?: SortOrder
+    user?: UserOrderByWithRelationInput
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserTokenWhereUniqueInput = {
+    id?: number
+    payload?: string
+  }
+
+  export type UserTokenOrderByWithAggregationInput = {
+    id?: SortOrder
+    payload?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserTokenCountOrderByAggregateInput
+    _avg?: UserTokenAvgOrderByAggregateInput
+    _max?: UserTokenMaxOrderByAggregateInput
+    _min?: UserTokenMinOrderByAggregateInput
+    _sum?: UserTokenSumOrderByAggregateInput
+  }
+
+  export type UserTokenScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<UserTokenScalarWhereWithAggregatesInput>
+    OR?: Enumerable<UserTokenScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<UserTokenScalarWhereWithAggregatesInput>
+    id?: IntWithAggregatesFilter | number
+    payload?: StringWithAggregatesFilter | string
+    userId?: IntWithAggregatesFilter | number
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
@@ -5629,6 +6749,7 @@ export namespace Prisma {
     answeringChats?: ChatCreateNestedManyWithoutAnswererInput
     sendedMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
+    tokens?: UserTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -5645,6 +6766,7 @@ export namespace Prisma {
     answeringChats?: ChatUncheckedCreateNestedManyWithoutAnswererInput
     sendedMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
+    tokens?: UserTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -5660,6 +6782,7 @@ export namespace Prisma {
     answeringChats?: ChatUpdateManyWithoutAnswererNestedInput
     sendedMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
+    tokens?: UserTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -5676,6 +6799,7 @@ export namespace Prisma {
     answeringChats?: ChatUncheckedUpdateManyWithoutAnswererNestedInput
     sendedMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
+    tokens?: UserTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -5703,6 +6827,58 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserTokenCreateInput = {
+    payload: string
+    user: UserCreateNestedOneWithoutTokensInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserTokenUncheckedCreateInput = {
+    id?: number
+    payload: string
+    userId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserTokenUpdateInput = {
+    payload?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutTokensNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserTokenUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    payload?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserTokenCreateManyInput = {
+    id?: number
+    payload: string
+    userId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserTokenUpdateManyMutationInput = {
+    payload?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserTokenUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    payload?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5980,6 +7156,12 @@ export namespace Prisma {
     none?: MessageWhereInput
   }
 
+  export type UserTokenListRelationFilter = {
+    every?: UserTokenWhereInput
+    some?: UserTokenWhereInput
+    none?: UserTokenWhereInput
+  }
+
   export type ItemOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -5989,6 +7171,10 @@ export namespace Prisma {
   }
 
   export type MessageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserTokenOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6115,6 +7301,40 @@ export namespace Prisma {
   export type UserRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
+  }
+
+  export type UserTokenCountOrderByAggregateInput = {
+    id?: SortOrder
+    payload?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserTokenAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type UserTokenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    payload?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserTokenMinOrderByAggregateInput = {
+    id?: SortOrder
+    payload?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserTokenSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
   }
 
   export type ItemCountOrderByAggregateInput = {
@@ -6296,6 +7516,13 @@ export namespace Prisma {
     connect?: Enumerable<MessageWhereUniqueInput>
   }
 
+  export type UserTokenCreateNestedManyWithoutUserInput = {
+    create?: XOR<Enumerable<UserTokenCreateWithoutUserInput>, Enumerable<UserTokenUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<UserTokenCreateOrConnectWithoutUserInput>
+    createMany?: UserTokenCreateManyUserInputEnvelope
+    connect?: Enumerable<UserTokenWhereUniqueInput>
+  }
+
   export type ItemUncheckedCreateNestedManyWithoutSellerInput = {
     create?: XOR<Enumerable<ItemCreateWithoutSellerInput>, Enumerable<ItemUncheckedCreateWithoutSellerInput>>
     connectOrCreate?: Enumerable<ItemCreateOrConnectWithoutSellerInput>
@@ -6336,6 +7563,13 @@ export namespace Prisma {
     connectOrCreate?: Enumerable<MessageCreateOrConnectWithoutReceiverInput>
     createMany?: MessageCreateManyReceiverInputEnvelope
     connect?: Enumerable<MessageWhereUniqueInput>
+  }
+
+  export type UserTokenUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<Enumerable<UserTokenCreateWithoutUserInput>, Enumerable<UserTokenUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<UserTokenCreateOrConnectWithoutUserInput>
+    createMany?: UserTokenCreateManyUserInputEnvelope
+    connect?: Enumerable<UserTokenWhereUniqueInput>
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -6442,6 +7676,20 @@ export namespace Prisma {
     deleteMany?: Enumerable<MessageScalarWhereInput>
   }
 
+  export type UserTokenUpdateManyWithoutUserNestedInput = {
+    create?: XOR<Enumerable<UserTokenCreateWithoutUserInput>, Enumerable<UserTokenUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<UserTokenCreateOrConnectWithoutUserInput>
+    upsert?: Enumerable<UserTokenUpsertWithWhereUniqueWithoutUserInput>
+    createMany?: UserTokenCreateManyUserInputEnvelope
+    set?: Enumerable<UserTokenWhereUniqueInput>
+    disconnect?: Enumerable<UserTokenWhereUniqueInput>
+    delete?: Enumerable<UserTokenWhereUniqueInput>
+    connect?: Enumerable<UserTokenWhereUniqueInput>
+    update?: Enumerable<UserTokenUpdateWithWhereUniqueWithoutUserInput>
+    updateMany?: Enumerable<UserTokenUpdateManyWithWhereWithoutUserInput>
+    deleteMany?: Enumerable<UserTokenScalarWhereInput>
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -6532,6 +7780,34 @@ export namespace Prisma {
     update?: Enumerable<MessageUpdateWithWhereUniqueWithoutReceiverInput>
     updateMany?: Enumerable<MessageUpdateManyWithWhereWithoutReceiverInput>
     deleteMany?: Enumerable<MessageScalarWhereInput>
+  }
+
+  export type UserTokenUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<Enumerable<UserTokenCreateWithoutUserInput>, Enumerable<UserTokenUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<UserTokenCreateOrConnectWithoutUserInput>
+    upsert?: Enumerable<UserTokenUpsertWithWhereUniqueWithoutUserInput>
+    createMany?: UserTokenCreateManyUserInputEnvelope
+    set?: Enumerable<UserTokenWhereUniqueInput>
+    disconnect?: Enumerable<UserTokenWhereUniqueInput>
+    delete?: Enumerable<UserTokenWhereUniqueInput>
+    connect?: Enumerable<UserTokenWhereUniqueInput>
+    update?: Enumerable<UserTokenUpdateWithWhereUniqueWithoutUserInput>
+    updateMany?: Enumerable<UserTokenUpdateManyWithWhereWithoutUserInput>
+    deleteMany?: Enumerable<UserTokenScalarWhereInput>
+  }
+
+  export type UserCreateNestedOneWithoutTokensInput = {
+    create?: XOR<UserCreateWithoutTokensInput, UserUncheckedCreateWithoutTokensInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTokensInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutTokensNestedInput = {
+    create?: XOR<UserCreateWithoutTokensInput, UserUncheckedCreateWithoutTokensInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTokensInput
+    upsert?: UserUpsertWithoutTokensInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<UserUpdateWithoutTokensInput, UserUncheckedUpdateWithoutTokensInput>
   }
 
   export type UserCreateNestedOneWithoutSoldItemsInput = {
@@ -7061,6 +8337,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UserTokenCreateWithoutUserInput = {
+    payload: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserTokenUncheckedCreateWithoutUserInput = {
+    id?: number
+    payload: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserTokenCreateOrConnectWithoutUserInput = {
+    where: UserTokenWhereUniqueInput
+    create: XOR<UserTokenCreateWithoutUserInput, UserTokenUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserTokenCreateManyUserInputEnvelope = {
+    data: Enumerable<UserTokenCreateManyUserInput>
+    skipDuplicates?: boolean
+  }
+
   export type ItemUpsertWithWhereUniqueWithoutSellerInput = {
     where: ItemWhereUniqueInput
     update: XOR<ItemUpdateWithoutSellerInput, ItemUncheckedUpdateWithoutSellerInput>
@@ -7195,6 +8494,105 @@ export namespace Prisma {
     data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutReceivedMessagesInput>
   }
 
+  export type UserTokenUpsertWithWhereUniqueWithoutUserInput = {
+    where: UserTokenWhereUniqueInput
+    update: XOR<UserTokenUpdateWithoutUserInput, UserTokenUncheckedUpdateWithoutUserInput>
+    create: XOR<UserTokenCreateWithoutUserInput, UserTokenUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserTokenUpdateWithWhereUniqueWithoutUserInput = {
+    where: UserTokenWhereUniqueInput
+    data: XOR<UserTokenUpdateWithoutUserInput, UserTokenUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserTokenUpdateManyWithWhereWithoutUserInput = {
+    where: UserTokenScalarWhereInput
+    data: XOR<UserTokenUpdateManyMutationInput, UserTokenUncheckedUpdateManyWithoutTokensInput>
+  }
+
+  export type UserTokenScalarWhereInput = {
+    AND?: Enumerable<UserTokenScalarWhereInput>
+    OR?: Enumerable<UserTokenScalarWhereInput>
+    NOT?: Enumerable<UserTokenScalarWhereInput>
+    id?: IntFilter | number
+    payload?: StringFilter | string
+    userId?: IntFilter | number
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+  }
+
+  export type UserCreateWithoutTokensInput = {
+    phoneNumber?: number | null
+    email?: string | null
+    name: string
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    soldItems?: ItemCreateNestedManyWithoutSellerInput
+    boughtItems?: ItemCreateNestedManyWithoutBuyerInput
+    askingChats?: ChatCreateNestedManyWithoutAskerInput
+    answeringChats?: ChatCreateNestedManyWithoutAnswererInput
+    sendedMessages?: MessageCreateNestedManyWithoutSenderInput
+    receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
+  }
+
+  export type UserUncheckedCreateWithoutTokensInput = {
+    id?: number
+    phoneNumber?: number | null
+    email?: string | null
+    name: string
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    soldItems?: ItemUncheckedCreateNestedManyWithoutSellerInput
+    boughtItems?: ItemUncheckedCreateNestedManyWithoutBuyerInput
+    askingChats?: ChatUncheckedCreateNestedManyWithoutAskerInput
+    answeringChats?: ChatUncheckedCreateNestedManyWithoutAnswererInput
+    sendedMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
+  }
+
+  export type UserCreateOrConnectWithoutTokensInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTokensInput, UserUncheckedCreateWithoutTokensInput>
+  }
+
+  export type UserUpsertWithoutTokensInput = {
+    update: XOR<UserUpdateWithoutTokensInput, UserUncheckedUpdateWithoutTokensInput>
+    create: XOR<UserCreateWithoutTokensInput, UserUncheckedCreateWithoutTokensInput>
+  }
+
+  export type UserUpdateWithoutTokensInput = {
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    soldItems?: ItemUpdateManyWithoutSellerNestedInput
+    boughtItems?: ItemUpdateManyWithoutBuyerNestedInput
+    askingChats?: ChatUpdateManyWithoutAskerNestedInput
+    answeringChats?: ChatUpdateManyWithoutAnswererNestedInput
+    sendedMessages?: MessageUpdateManyWithoutSenderNestedInput
+    receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTokensInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    soldItems?: ItemUncheckedUpdateManyWithoutSellerNestedInput
+    boughtItems?: ItemUncheckedUpdateManyWithoutBuyerNestedInput
+    askingChats?: ChatUncheckedUpdateManyWithoutAskerNestedInput
+    answeringChats?: ChatUncheckedUpdateManyWithoutAnswererNestedInput
+    sendedMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  }
+
   export type UserCreateWithoutSoldItemsInput = {
     phoneNumber?: number | null
     email?: string | null
@@ -7207,6 +8605,7 @@ export namespace Prisma {
     answeringChats?: ChatCreateNestedManyWithoutAnswererInput
     sendedMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
+    tokens?: UserTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSoldItemsInput = {
@@ -7222,6 +8621,7 @@ export namespace Prisma {
     answeringChats?: ChatUncheckedCreateNestedManyWithoutAnswererInput
     sendedMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
+    tokens?: UserTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSoldItemsInput = {
@@ -7241,6 +8641,7 @@ export namespace Prisma {
     answeringChats?: ChatCreateNestedManyWithoutAnswererInput
     sendedMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
+    tokens?: UserTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBoughtItemsInput = {
@@ -7256,6 +8657,7 @@ export namespace Prisma {
     answeringChats?: ChatUncheckedCreateNestedManyWithoutAnswererInput
     sendedMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
+    tokens?: UserTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBoughtItemsInput = {
@@ -7307,6 +8709,7 @@ export namespace Prisma {
     answeringChats?: ChatUpdateManyWithoutAnswererNestedInput
     sendedMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
+    tokens?: UserTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSoldItemsInput = {
@@ -7322,6 +8725,7 @@ export namespace Prisma {
     answeringChats?: ChatUncheckedUpdateManyWithoutAnswererNestedInput
     sendedMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
+    tokens?: UserTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutBoughtItemsInput = {
@@ -7341,6 +8745,7 @@ export namespace Prisma {
     answeringChats?: ChatUpdateManyWithoutAnswererNestedInput
     sendedMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
+    tokens?: UserTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBoughtItemsInput = {
@@ -7356,6 +8761,7 @@ export namespace Prisma {
     answeringChats?: ChatUncheckedUpdateManyWithoutAnswererNestedInput
     sendedMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
+    tokens?: UserTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ChatUpsertWithWhereUniqueWithoutItemInput = {
@@ -7386,6 +8792,7 @@ export namespace Prisma {
     answeringChats?: ChatCreateNestedManyWithoutAnswererInput
     sendedMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
+    tokens?: UserTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAskingChatsInput = {
@@ -7401,6 +8808,7 @@ export namespace Prisma {
     answeringChats?: ChatUncheckedCreateNestedManyWithoutAnswererInput
     sendedMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
+    tokens?: UserTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAskingChatsInput = {
@@ -7420,6 +8828,7 @@ export namespace Prisma {
     askingChats?: ChatCreateNestedManyWithoutAskerInput
     sendedMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
+    tokens?: UserTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAnsweringChatsInput = {
@@ -7435,6 +8844,7 @@ export namespace Prisma {
     askingChats?: ChatUncheckedCreateNestedManyWithoutAskerInput
     sendedMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
+    tokens?: UserTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAnsweringChatsInput = {
@@ -7510,6 +8920,7 @@ export namespace Prisma {
     answeringChats?: ChatUpdateManyWithoutAnswererNestedInput
     sendedMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
+    tokens?: UserTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAskingChatsInput = {
@@ -7525,6 +8936,7 @@ export namespace Prisma {
     answeringChats?: ChatUncheckedUpdateManyWithoutAnswererNestedInput
     sendedMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
+    tokens?: UserTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutAnsweringChatsInput = {
@@ -7544,6 +8956,7 @@ export namespace Prisma {
     askingChats?: ChatUpdateManyWithoutAskerNestedInput
     sendedMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
+    tokens?: UserTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAnsweringChatsInput = {
@@ -7559,6 +8972,7 @@ export namespace Prisma {
     askingChats?: ChatUncheckedUpdateManyWithoutAskerNestedInput
     sendedMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
+    tokens?: UserTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ItemUpsertWithoutChatsInput = {
@@ -7637,6 +9051,7 @@ export namespace Prisma {
     askingChats?: ChatCreateNestedManyWithoutAskerInput
     answeringChats?: ChatCreateNestedManyWithoutAnswererInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
+    tokens?: UserTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSendedMessagesInput = {
@@ -7652,6 +9067,7 @@ export namespace Prisma {
     askingChats?: ChatUncheckedCreateNestedManyWithoutAskerInput
     answeringChats?: ChatUncheckedCreateNestedManyWithoutAnswererInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
+    tokens?: UserTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSendedMessagesInput = {
@@ -7671,6 +9087,7 @@ export namespace Prisma {
     askingChats?: ChatCreateNestedManyWithoutAskerInput
     answeringChats?: ChatCreateNestedManyWithoutAnswererInput
     sendedMessages?: MessageCreateNestedManyWithoutSenderInput
+    tokens?: UserTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReceivedMessagesInput = {
@@ -7686,6 +9103,7 @@ export namespace Prisma {
     askingChats?: ChatUncheckedCreateNestedManyWithoutAskerInput
     answeringChats?: ChatUncheckedCreateNestedManyWithoutAnswererInput
     sendedMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    tokens?: UserTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReceivedMessagesInput = {
@@ -7732,6 +9150,7 @@ export namespace Prisma {
     askingChats?: ChatUpdateManyWithoutAskerNestedInput
     answeringChats?: ChatUpdateManyWithoutAnswererNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
+    tokens?: UserTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSendedMessagesInput = {
@@ -7747,6 +9166,7 @@ export namespace Prisma {
     askingChats?: ChatUncheckedUpdateManyWithoutAskerNestedInput
     answeringChats?: ChatUncheckedUpdateManyWithoutAnswererNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
+    tokens?: UserTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutReceivedMessagesInput = {
@@ -7766,6 +9186,7 @@ export namespace Prisma {
     askingChats?: ChatUpdateManyWithoutAskerNestedInput
     answeringChats?: ChatUpdateManyWithoutAnswererNestedInput
     sendedMessages?: MessageUpdateManyWithoutSenderNestedInput
+    tokens?: UserTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
@@ -7781,6 +9202,7 @@ export namespace Prisma {
     askingChats?: ChatUncheckedUpdateManyWithoutAskerNestedInput
     answeringChats?: ChatUncheckedUpdateManyWithoutAnswererNestedInput
     sendedMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    tokens?: UserTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ItemCreateManySellerInput = {
@@ -7833,6 +9255,13 @@ export namespace Prisma {
     senderId: number
     content: string
     createdAt?: Date | string
+  }
+
+  export type UserTokenCreateManyUserInput = {
+    id?: number
+    payload: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ItemUpdateWithoutSellerInput = {
@@ -7991,6 +9420,26 @@ export namespace Prisma {
     senderId?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserTokenUpdateWithoutUserInput = {
+    payload?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserTokenUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    payload?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserTokenUncheckedUpdateManyWithoutTokensInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    payload?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ChatCreateManyItemInput = {

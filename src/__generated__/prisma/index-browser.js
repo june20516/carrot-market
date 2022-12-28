@@ -140,9 +140,18 @@ exports.Prisma.UserScalarFieldEnum = makeEnum({
   updatedAt: 'updatedAt'
 });
 
+exports.Prisma.UserTokenScalarFieldEnum = makeEnum({
+  id: 'id',
+  payload: 'payload',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+});
+
 
 exports.Prisma.ModelName = makeEnum({
   User: 'User',
+  UserToken: 'UserToken',
   Item: 'Item',
   Chat: 'Chat',
   Message: 'Message'
