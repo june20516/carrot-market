@@ -11,7 +11,8 @@ export default withHandler('POST', async (req: NextApiRequest, res: NextApiRespo
     ...(email && { email }),
     ...(phoneNumber && { phoneNumber: parseInt(phoneNumber) }),
   };
-  if (!(userInfo.email && userInfo.phoneNumber)) return res.status(400).json({ ok: false });
+  if (!(userInfo.email || userInfo.phoneNumber))
+    return res.status(400).json({ ok: false, error: 'Required Info is not offered.' });
 
   const tokenPayload = Math.round(Math.random() * 1000000).toString();
   const token = await client.userToken
@@ -27,6 +28,7 @@ export default withHandler('POST', async (req: NextApiRequest, res: NextApiRespo
       },
     })
     .catch(error => {
+      console.log(error);
       return res.status(500).json({ ok: false, error });
     });
   if (token && token.userId) {
