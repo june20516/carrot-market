@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 // *** prisma with yarn berry  ***
-// https://github.com/prisma/prisma/issues/8765#issuecomment-1086611596
+// DO : `yarn pnpify prisma generate`
+// SEE ALSO : https://github.com/prisma/prisma/issues/8765#issuecomment-1086611596
 generator client {
   provider = "prisma-client-js"
   output   = "../src/__generated__/prisma"
