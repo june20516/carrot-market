@@ -27,11 +27,11 @@ export default withHandler('POST', async (req: NextApiRequest, res: NextApiRespo
         },
       },
     })
-    .catch(error => {
+    .catch((error: any) => {
       console.log(error);
       return res.status(500).json({ ok: false, error });
     });
-  if (token && token.userId) {
+  if (token && (await client.user.findFirst({ where: { tokens: {some: token} } }))?.phoneNumber) {
     await twilioClient.messages.create({
       messagingServiceSid: process.env.TWILIO_MESSAGE_SID,
       to: process.env.TWILIO_TEST_PHONE_NUMBER!, // actually, `token.user.phoneNumber`

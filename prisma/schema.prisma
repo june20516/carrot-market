@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -19,22 +16,22 @@ model User {
   image            String?
   createdAt        DateTime    @default(now())
   updatedAt        DateTime    @updatedAt
+  tokens           UserToken[]
   soldItems        Item[]      @relation("soldItems")
   boughtItems      Item[]      @relation("boughtItems")
   askingChats      Chat[]      @relation("askerChat")
   answeringChats   Chat[]      @relation("answererChat")
   sendedMessages   Message[]   @relation("sendedMessages")
   receivedMessages Message[]   @relation("receivedMessages")
-  tokens           UserToken[]
 }
 
 model UserToken {
   id        Int      @id @default(autoincrement())
   payload   String   @unique
-  user      User     @relation(fields: [userId], references: [id])
   userId    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }
@@ -44,13 +41,13 @@ model Item {
   name      String
   price     String
   image     String
-  seller    User     @relation("soldItems", fields: [sellerId], references: [id])
   sellerId  Int
-  buyer     User?    @relation("boughtItems", fields: [buyerId], references: [id])
   buyerId   Int?
-  chats     Chat[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  seller    User     @relation("soldItems", fields: [sellerId], references: [id])
+  buyer     User?    @relation("boughtItems", fields: [buyerId], references: [id])
+  chats     Chat[]
 
   @@index([sellerId])
   @@index([buyerId])
@@ -58,15 +55,15 @@ model Item {
 
 model Chat {
   id         Int       @id @default(autoincrement())
-  asker      User      @relation("askerChat", fields: [askerId], references: [id])
   askerId    Int
-  answerer   User      @relation("answererChat", fields: [answererId], references: [id])
   answererId Int
-  item       Item      @relation(fields: [itemId], references: [id])
   itemId     Int
-  messages   Message[]
   createdAt  DateTime  @default(now())
   talkedAt   DateTime
+  asker      User      @relation("askerChat", fields: [askerId], references: [id])
+  answerer   User      @relation("answererChat", fields: [answererId], references: [id])
+  item       Item      @relation(fields: [itemId], references: [id])
+  messages   Message[]
 
   @@index([askerId])
   @@index([answererId])
@@ -75,14 +72,14 @@ model Chat {
 
 model Message {
   id         Int      @id @default(autoincrement())
-  chat       Chat     @relation(fields: [chatId], references: [id])
   chatId     Int
-  sender     User     @relation("sendedMessages", fields: [senderId], references: [id])
   senderId   Int
-  receiver   User     @relation("receivedMessages", fields: [receiverId], references: [id])
   receiverId Int
   content    String
   createdAt  DateTime @default(now())
+  chat       Chat     @relation(fields: [chatId], references: [id])
+  sender     User     @relation("sendedMessages", fields: [senderId], references: [id])
+  receiver   User     @relation("receivedMessages", fields: [receiverId], references: [id])
 
   @@index([chatId])
   @@index([senderId])

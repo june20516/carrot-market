@@ -1,3 +1,3 @@
-import { PrismaClient } from '../../src/__generated__/prisma';
+import { PrismaClient } from "@prisma/client";
 
 export default new PrismaClient();
